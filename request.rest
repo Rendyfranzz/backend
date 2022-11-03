@@ -1,0 +1,51 @@
+//create user
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+    "name":"admin3",
+    "email":"andmin3@gmail.com",
+    "password":"rendi123",
+    "confPassword":"rendi123",
+    "role":"admin"
+}
+
+###
+//get all userd
+GET http://localhost:5000/users
+
+###
+//get single user
+GET http://localhost:5000/users/96083ff9-d966-46b1-8b03-8f05d4f9044a
+
+###
+//update user
+PATCH http://localhost:5000/users/96083ff9-d966-46b1-8b03-8f05d4f9044a
+Content-Type: application/json
+
+{
+    "name":"rendi update",
+    "email":"admin@gmail.com",
+    "password":"",
+    "confPassword":"",
+    "role":"user"
+}
+
+###
+//delete
+DELETE http://localhost:5000/users/6f803a0f-b4d6-4e1c-9e06-b9ee20e541b1
+
+
+###
+//me
+GET  http://localhost:5000/me
+
+###
+//login
+POST  http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email":"user@gmail.com",
+    "password":"rendi123",
+}
