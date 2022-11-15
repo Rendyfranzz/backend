@@ -3,7 +3,7 @@ import db from "../config/Database.js";
 
 const {DataTypes} = Sequelize;
 
-const Users = db.define('users',{
+export const Users = db.define('users',{
     uuid:{
         type: DataTypes.UUID,
         defaultValue:DataTypes.UUIDV4,
@@ -42,4 +42,47 @@ const Users = db.define('users',{
 },{
     freezeTableName:true
 })
-export default Users;
+
+
+export const Transaction = db.define('transaction',{
+    transuuid:{
+        type: DataTypes.UUID,
+        defaultValue:DataTypes.UUIDV4,
+        allowNull:false,
+        primaryKey:true,
+        validate:{
+            notEmpty:true
+        }
+    },name:{
+        type:DataTypes.STRING,
+        allowNull:false,
+        validate:{
+            notEmpty:true,
+            len:[3,100]
+        }
+    },price:{
+        type:DataTypes.INTEGER,
+        allowNull:false,
+        validate:{
+            notEmpty:true
+        }
+    },lunas:{
+        type:DataTypes.STRING,
+        allowNull:false,
+        validate:{
+            notEmpty:true
+        }
+    },transid:{
+        type:DataTypes.UUID,
+        defaultValue:DataTypes.UUIDV4,
+        allowNull:false,
+        validate:{
+            notEmpty:true
+        }
+    }
+},{
+    freezeTableName:true
+})
+
+Users.hasMany(Transaction)
+Transaction.belongsTo(Users,{foreignKey:"transid"})

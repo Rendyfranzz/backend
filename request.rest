@@ -3,7 +3,7 @@ POST http://localhost:5000/users
 Content-Type: application/json
 
 {
-    "name":"admin3",
+    "name":"admin4",
     "email":"andmin3@gmail.com",
     "password":"rendi123",
     "confPassword":"rendi123",
@@ -16,7 +16,7 @@ GET http://localhost:5000/users
 
 ###
 //get single user
-GET http://localhost:5000/users/96083ff9-d966-46b1-8b03-8f05d4f9044a
+GET http://localhost:5000/users/eb9b70fe-d7b8-40ff-840a-2565bb3ddb16
 
 ###
 //update user
@@ -46,6 +46,24 @@ POST  http://localhost:5000/login
 Content-Type: application/json
 
 {
-    "email":"user@gmail.com",
-    "password":"rendi123",
+    "email":"andmin3@gmail.com",
+    "password":"rendi123"
 }
+
+###
+//logout
+DELETE http://localhost:5000/logout
+
+###
+//create transaction
+POST http://localhost:5000/transaction
+Content-Type: application/json
+
+{   
+    "name":"sasas21",
+    "price":123,
+    "lunas":"belum"
+}
+###
+//get all trans
+GET http://localhost:5000/transaction
