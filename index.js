@@ -34,7 +34,7 @@ app.use(session({
 }))
 app.use(cors({
     credentials:true,
-    origin: "*",
+    origin: "https://backend-production-c8bb.up.railway.app/",
     methods:["GET","POST","PUT","PATCH","DELETE","OPTIONS"]
 }));
 app.use(express.json())
