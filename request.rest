@@ -74,4 +74,20 @@ GET http://localhost:5000/getva
 
 ###
 //foxe maniri
-GET http://localhost:5000/mandiriva
+post http://localhost:5000/mandiriva
+
+###
+//gget maniri
+get http://localhost:5000/getmandiri
+
+###
+//get qr
+GET http://localhost:5000/getqr
+
+###
+post https://api.xendit.co/callback_virtual_accounts/external_id=va-324123235/simulate_payment
+
+
+###
+//get qr
+post http://localhost:5000/mandiricall

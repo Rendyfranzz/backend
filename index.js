@@ -33,6 +33,7 @@ app.use(session({
     }
 }))
 app.use(cors({
+    credentials:true,
     origin: "*",
     methods:["GET","POST","PUT","PATCH","DELETE","OPTIONS"]
 }));
