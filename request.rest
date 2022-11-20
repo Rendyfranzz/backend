@@ -3,11 +3,11 @@ POST http://localhost:5000/users
 Content-Type: application/json
 
 {
-    "name":"admin4",
-    "email":"andmin3@gmail.com",
+    "name":"user2",
+    "email":"user2@gmail.com",
     "password":"rendi123",
     "confPassword":"rendi123",
-    "role":"admin"
+    "role":"user"
 }
 
 ###
@@ -67,3 +67,11 @@ Content-Type: application/json
 ###
 //get all trans
 GET http://localhost:5000/transaction
+
+###
+//get va
+GET http://localhost:5000/getva
+
+###
+//foxe maniri
+GET http://localhost:5000/mandiriva
