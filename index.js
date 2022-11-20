@@ -21,8 +21,12 @@ const sessionStore = SequelizeStore(session.Store);
 const store = new sessionStore({
     db: db
 })
-
-
+app.use(cors({
+    credentials:true,
+    origin: "*",
+    methods:["GET","POST","PUT","PATCH","DELETE","OPTIONS"]
+}));
+app.options("*",cors())
 app.use(session({
     secret: process.env.SESS_SECRET,
     resave: false,
@@ -32,11 +36,7 @@ app.use(session({
         secure:'auto'
     }
 }))
-app.use(cors({
-    credentials:true,
-    origin: "https://backend-production-c8bb.up.railway.app/",
-    methods:["GET","POST","PUT","PATCH","DELETE","OPTIONS"]
-}));
+
 app.use(express.json())
 app.use(TransRoute)
 app.use(AuthRoute)
