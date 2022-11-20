@@ -1,4 +1,4 @@
-import { Transaction, Users } from "../models/userModel.js";
+import { Transaction, Users } from "../models/UserModel.js";
 
 export const getTransaction = async(req,res)=>{
     try{
