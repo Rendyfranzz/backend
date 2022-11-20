@@ -22,7 +22,6 @@ const store = new sessionStore({
     db: db
 })
 app.use(cors({
-    credentials:true,
     origin: "*",
     methods:["GET","POST","PUT","PATCH","DELETE","OPTIONS"]
 }));
