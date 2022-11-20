@@ -33,8 +33,8 @@ app.use(session({
     }
 }))
 app.use(cors({
-    credentials: true,
-    origin: "*"
+    origin: "*",
+    methods:["GET","POST","PUT","PATCH","DELETE","OPTIONS"]
 }));
 app.use(express.json())
 app.use(TransRoute)
