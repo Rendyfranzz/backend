@@ -3,11 +3,11 @@ POST http://localhost:5000/users
 Content-Type: application/json
 
 {
-    "name":"user2",
-    "email":"user2@gmail.com",
-    "password":"rendi123",
-    "confPassword":"rendi123",
-    "role":"user"
+    "name":"admin",
+    "email":"admin@gmail.com",
+    "password":"admin123",
+    "confPassword":"admin123",
+    "role":"admin"
 }
 
 ###
@@ -46,8 +46,8 @@ POST  http://localhost:5000/login
 Content-Type: application/json
 
 {
-    "email":"andmin3@gmail.com",
-    "password":"rendi123"
+    "email":"admin@gmail.com",
+    "password":"admin123"
 }
 
 ###
@@ -61,13 +61,26 @@ Content-Type: application/json
 
 {   
     "name":"sasas21",
-    "price":123,
-    "lunas":"belum"
+    "price":100,
+    "lunas":"lunas",
+    "tanggal":"Wed Nov 23 2022",
+    "timeid":"58bf60f0-6972-11ed-80ec-00155d6ca220"
+}
+###
+//create jadwal
+POST http://localhost:5000/createjadwal
+Content-Type: application/json
+
+{   
+    "jam":"10:40pm"
 }
 ###
 //get all trans
 GET http://localhost:5000/transaction
 
+###
+//get jadwal
+GET http://localhost:5000/getjadwal
 ###
 //get va
 GET http://localhost:5000/getva
@@ -85,9 +98,12 @@ get http://localhost:5000/getmandiri
 GET http://localhost:5000/getqr
 
 ###
-post https://api.xendit.co/callback_virtual_accounts/external_id=va-324123235/simulate_payment
-
+//get code
+GET http://localhost:5000/getcode
 
 ###
-//get qr
+post https://api.xendit.co/callback_virtual_accounts/external_id=va-324123235/simulate_payment
+
+###
+//
 post http://localhost:5000/mandiricall
