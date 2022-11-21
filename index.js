@@ -10,6 +10,7 @@ import UserRoute from "./route/UserRoute.js"
 import AuthRoute from "./route/AuthRoute.js"
 import TransRoute from "./route/TransRoute.js"
 import PaymentRoute from "./route/PaymentRoute.js"
+import TimeRoute from "./route/TimeRoute.js"
 const app = express();
 
 // (async()=>[
@@ -54,6 +55,7 @@ app.use(TransRoute)
 app.use(AuthRoute)
 app.use(UserRoute)
 app.use(PaymentRoute)
+app.use(TimeRoute)
 
 // store.sync()
 app.listen(process.env.PORT,()=>{

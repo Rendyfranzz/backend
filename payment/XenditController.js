@@ -1,7 +1,9 @@
 import Xendit from "xendit-node";
+import dotenv from "dotenv"
+dotenv.config()
 
 export const getVa = async (req, res) => {
-    const x = new Xendit({ secretKey: 'xnd_development_09vmJJaxo0pWm4sppLCigDTgN7FkHNhI5VUIBGhFWyNCyeHKOGqtexGpW0DUx2' });
+    const x = new Xendit({ secretKey: process.env.XENDIT_KEY });
     const { VirtualAcc } = x;
     const vaSpecificOptions = {};
     const va = new VirtualAcc(vaSpecificOptions);
@@ -10,16 +12,32 @@ export const getVa = async (req, res) => {
 }
 
 export const getQr = async (res) => {
-    const x = new Xendit({ secretKey: 'xnd_development_09vmJJaxo0pWm4sppLCigDTgN7FkHNhI5VUIBGhFWyNCyeHKOGqtexGpW0DUx2' });
+    const x = new Xendit({ secretKey: process.env.XENDIT_KEY });
     const { QrCode } = x;
     const qrcodeSpecificOptions = {};
     const q = new QrCode(qrcodeSpecificOptions);
     try {
         const response = await q.createCode({
-            externalID: 'qr-12125167',
+            externalID: 'qr-12125183',
             amount: 10000,
             type: "DYNAMIC",
-            callbackURL: 'http://localhost:5000/qrcall'
+            callbackURL: 'https://ab09-2001-448a-50e0-b28c-d580-f696-5ccb-6730.ap.ngrok.io/qrcall',
+        })
+        console.log(response);
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+export const getCodeQr = async () => {
+    const x = new Xendit({ secretKey: process.env.XENDIT_KEY });
+    const { QrCode } = x;
+    const qrcodeSpecificOptions = {};
+    const q = new QrCode(qrcodeSpecificOptions);
+    try {
+        const response = await q.getCode({
+            externalID: 'qr-12125181'
         })
         console.log(response);
     } catch (error) {
@@ -29,11 +47,11 @@ export const getQr = async (res) => {
 }
 
 export const qrCallback = async (req, res) => {
-    const [id, status] = req.body
+    return res.sendStatus(200)
 }
 
 export const mandiriVa = async (req, res) => {
-    const x = new Xendit({ secretKey: 'xnd_development_09vmJJaxo0pWm4sppLCigDTgN7FkHNhI5VUIBGhFWyNCyeHKOGqtexGpW0DUx2' });
+    const x = new Xendit({ secretKey: process.env.XENDIT_KEY });
 
     const { VirtualAcc } = x;
     const vaSpecificOptions = {};
@@ -53,17 +71,16 @@ export const mandiriVa = async (req, res) => {
 }
 
 export const getMandiriVa = async (req, res) => {
-    const x = new Xendit({ secretKey: 'xnd_development_09vmJJaxo0pWm4sppLCigDTgN7FkHNhI5VUIBGhFWyNCyeHKOGqtexGpW0DUx2' });
+    const x = new Xendit({ secretKey: process.env.XENDIT_KEY });
 
     const { VirtualAcc } = x;
     const vaSpecificOptions = {};
     const va = new VirtualAcc(vaSpecificOptions);
 
-    const resp = await va.getFixedVA({ id:'637a45f9a84200526ffcd27c' });
+    const resp = await va.getFixedVA({ id: '637a45f9a84200526ffcd27c' });
     console.log(resp);
 }
 export const mandiriCall = async (req, res) => {
-    
-    console.log("haii");
+    console.log(req.body);
+    return res.sendStatus(200)
 }
-

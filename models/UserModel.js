@@ -72,7 +72,13 @@ export const Transaction = db.define('transaction',{
         validate:{
             notEmpty:true
         }
-    },transid:{
+    },tanggal:{
+        type:DataTypes.DATE,
+        allowNull:false,
+        validate:{
+            notEmpty:true
+        }
+    },userid:{
         type:DataTypes.UUID,
         defaultValue:DataTypes.UUIDV4,
         allowNull:false,
@@ -84,5 +90,29 @@ export const Transaction = db.define('transaction',{
     freezeTableName:true
 })
 
-Users.hasMany(Transaction)
-Transaction.belongsTo(Users,{foreignKey:"transid"})
+export const Jadwal = db.define('jadwal',{
+    uuid:{
+        type: DataTypes.UUID,
+        defaultValue:DataTypes.UUIDV4,
+        allowNull:false,
+        primaryKey:true,
+        validate:{
+            notEmpty:true
+        }
+    },jam:{
+        type:DataTypes.STRING,
+        allowNull:false,
+        validate:{
+            notEmpty:true,
+            len:[3,100]
+        }
+    }
+},{
+    freezeTableName:true
+})
+
+
+Users.hasMany(Transaction,{foreignKey:"userid"})
+Transaction.belongsTo(Users,{foreignKey:"userid"})
+Jadwal.hasMany(Transaction,{foreignKey:"timeid"})
+Transaction.belongsTo(Jadwal,{foreignKey:"timeid"})

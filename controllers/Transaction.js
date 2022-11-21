@@ -17,14 +17,15 @@ export const getTransactionById = async(req,res)=>{
     
 }
 export const createTransaction = async(req,res)=>{
-    const {name,price,lunas} = req.body
+    const {name,price,lunas,tanggal,timeid} = req.body
     try{
         await Transaction.create({
             name:name,
             price:price,
             lunas:lunas,
-            transid:req.userId,
-            userUuid:req.userId
+            tanggal:tanggal,
+            timeid:timeid,
+            userid:req.userId,
         });  
         res.status(201).json({msg:"Transaksi berhasil"})
     }catch(error){
