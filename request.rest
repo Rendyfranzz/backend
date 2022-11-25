@@ -3,11 +3,11 @@ POST http://localhost:5000/users
 Content-Type: application/json
 
 {
-    "name":"admin",
-    "email":"admin@gmail.com",
-    "password":"admin123",
-    "confPassword":"admin123",
-    "role":"admin"
+    "name":"user",
+    "email":"user@gmail.com",
+    "password":"user123",
+    "confPassword":"user123",
+    "role":"user"
 }
 
 ###
@@ -95,11 +95,11 @@ get http://localhost:5000/getmandiri
 
 ###
 //get qr
-GET http://localhost:5000/getqr
+GET http://localhost:5000/getqr/1
 
 ###
 //get code
-GET http://localhost:5000/getcode
+GET http://localhost:5000/getcode/silhouette-1669385479565
 
 ###
 post https://api.xendit.co/callback_virtual_accounts/external_id=va-324123235/simulate_payment
@@ -107,3 +107,11 @@ post https://api.xendit.co/callback_virtual_accounts/external_id=va-324123235/si
 ###
 //
 post http://localhost:5000/mandiricall
+
+###
+get http://localhost:5000/getjadwal/Wed Nov 24 2022
+
+
+###
+get http://localhost:5000/getjadwalid/58bf60f0-6972-11ed-80ec-00155d6ca220
+
