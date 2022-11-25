@@ -17,7 +17,7 @@ export const getTransactionById = async(req,res)=>{
     
 }
 export const createTransaction = async(req,res)=>{
-    const {name,price,lunas,tanggal,timeid} = req.body
+    const {name,price,lunas,tanggal,timeid,qrId} = req.body
     try{
         await Transaction.create({
             name:name,
@@ -25,6 +25,7 @@ export const createTransaction = async(req,res)=>{
             lunas:lunas,
             tanggal:tanggal,
             timeid:timeid,
+            qrId:qrId,
             userid:req.userId,
         });  
         res.status(201).json({msg:"Transaksi berhasil"})

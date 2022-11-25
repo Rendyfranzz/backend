@@ -78,6 +78,12 @@ export const Transaction = db.define('transaction',{
         validate:{
             notEmpty:true
         }
+    },qrId:{
+        type:DataTypes.STRING,
+        allowNull:false,
+        validate:{
+            notEmpty:true
+        }
     },userid:{
         type:DataTypes.UUID,
         defaultValue:DataTypes.UUIDV4,

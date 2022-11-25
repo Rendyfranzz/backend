@@ -2,6 +2,7 @@
 import { Jadwal, Transaction } from "../models/UserModel.js";
 
 export const getJadwal = async(req,res)=>{
+    console.log(req.params.tanggal);
     try{
         const allJadwal = await Jadwal.findAll({
             attributes:['uuid','jam'],
@@ -12,7 +13,8 @@ export const getJadwal = async(req,res)=>{
                 include:[{
                     model:Transaction,
                     where:{
-                        lunas:"lunas"
+                        lunas:"lunas",
+                        tanggal:req.params.tanggal
                     }
                 }]
             });
@@ -41,7 +43,18 @@ export const getJadwal = async(req,res)=>{
 }
 
 export const getJadwalId = async(req,res)=>{
-    
+    try{
+        const response = await Jadwal.findOne({
+            where:{
+                uuid:req.params.id
+            }
+            });
+            res.status(200).json(response)
+        
+    }catch(err){
+        console.log(err);
+    }
+
     
 }
 export const createJadwal = async(req,res)=>{
