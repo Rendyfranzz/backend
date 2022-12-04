@@ -16,7 +16,7 @@ export const Login = async(req, res)=>{
     const name = user.name;
     const email = user.email;
     const role = user.role;
-    res.status(200).json({uuid,name,email,role})
+    res.end(JSON.stringify(req.session.userId))
 }
 
 export const LogOut = (req, res)=>{
