@@ -12,6 +12,7 @@ export const Login = async(req, res)=>{
     if(!match) return res.status(400).json({msg:"password salah"});
     req.session.authenticated = true;
     req.session.userId = user.uuid;
+    req.session.save();
     console.log(req.session.userId);
     const uuid = user.uuid;
     const name = user.name;
