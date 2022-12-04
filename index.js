@@ -46,7 +46,7 @@ app.use(session({
     saveUninitialized:true,
     store: store,
     cookie:{
-        path:"/",
+        path:"/public/",
         secure:'auto'
     }
 }))
