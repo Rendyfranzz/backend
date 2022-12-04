@@ -22,6 +22,12 @@ const sessionStore = SequelizeStore(session.Store);
 const store = new sessionStore({
     db: db
 })
+
+app.use(function (request, response, next) {
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 app.use(cors({
     credentials:true,
     origin: "*",
