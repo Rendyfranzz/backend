@@ -25,7 +25,7 @@ export const LogOut = (req, res)=>{
     })
 }
 
-export const Me = async(req, res)=>{
+export const Me = async(req, res)=>{qw
     if(!req.session.userId){
         return res.status(401).json({msg:"Mohon login ke akun anda"})
     }

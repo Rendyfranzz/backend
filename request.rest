@@ -75,6 +75,14 @@ Content-Type: application/json
 {   
     "jam":"11:00"
 }
+
+###
+POST backend-production-c8bb.up.railway.app/createjadwal
+Content-Type: application/json
+
+{   
+    "jam":"11:00"
+}
 ###
 //get all trans
 GET http://localhost:5000/transaction
