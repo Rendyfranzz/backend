@@ -6,8 +6,9 @@ Content-Type: application/json
     "name":"user",
     "email":"user@gmail.com",
     "password":"user123",
+    "hp" : "085768987565",
     "confPassword":"user123",
-    "role":"user"
+    "role":"admin"
 }
 
 ###
@@ -72,46 +73,53 @@ POST http://localhost:5000/createjadwal
 Content-Type: application/json
 
 {   
-    "jam":"10:40pm"
+    "jam":"11:00"
 }
 ###
 //get all trans
 GET http://localhost:5000/transaction
+###
+//get all trans
+GET http://localhost:5000/usertrans/3c7c7f02-4158-49a3-b35e-c7a37304a928
 
 ###
 //get jadwal
 GET http://localhost:5000/getjadwal
 ###
-//get va
-GET http://localhost:5000/getva
-
-###
-//foxe maniri
-post http://localhost:5000/mandiriva
-
-###
-//gget maniri
-get http://localhost:5000/getmandiri
 
 ###
 //get qr
-GET http://localhost:5000/getqr/1
+GET http://localhost:5000/getqr/silsah2&&4000
 
 ###
 //get code
-GET http://localhost:5000/getcode/silhouette-1669385479565
+GET http://localhost:5000/getcode/silhouette-1669918367780
 
 ###
 post https://api.xendit.co/callback_virtual_accounts/external_id=va-324123235/simulate_payment
 
 ###
 //
-post http://localhost:5000/mandiricall
+post http://localhost:5000/qrcall
+# Content-Type: application/json
 
+# {   
+#     "qrid":"silhouette-1669901551562"
+# }
 ###
 get http://localhost:5000/getjadwal/Wed Nov 24 2022
 
+###
+post http://localhost:5000/update
+Content-Type: application/json
+
+{   
+    "qrid":"silhouette-1669911165388"
+}
 
 ###
 get http://localhost:5000/getjadwalid/58bf60f0-6972-11ed-80ec-00155d6ca220
+###
+//get all trans
+GET http://localhost:5000/transaction/silhouette-1669911165388
 
