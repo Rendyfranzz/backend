@@ -2,7 +2,6 @@
 import { Jadwal, Transaction } from "../models/UserModel.js";
 
 export const getJadwal = async(req,res)=>{
-    console.log(req.params.tanggal);
     try{
         const allJadwal = await Jadwal.findAll({
             attributes:['uuid','jam'],

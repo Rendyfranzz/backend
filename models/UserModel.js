@@ -79,7 +79,7 @@ export const Transaction = db.define('transaction',{
             notEmpty:true
         }
     },tanggal:{
-        type:DataTypes.DATE,
+        type:DataTypes.STRING,
         allowNull:false,
         validate:{
             notEmpty:true
