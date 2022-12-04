@@ -13,7 +13,7 @@ export const getQr = async (req, res) => {
             externalID: req.params.qrid,
             amount: req.params.amount,
             type: "DYNAMIC",
-            callbackURL: 'https://5208-103-94-190-20.ap.ngrok.io/qrcall',
+            callbackURL: 'https://backend-production-c8bb.up.railway.app/qrcall',
             metadata:null
         })
         res.status(200).json(response)

@@ -23,10 +23,11 @@ const store = new sessionStore({
     db: db
 })
 app.use(cors({
+    credentials:true,
     origin: "*",
 }));
 // app.options("*",cors())
-// const whitelist = ["http://localhost:3000","https://silhouette-test.vercel.app"]
+// const whitelist = ["http://localhost:3000"]
 // const corsOptions = {
 //   origin: function (origin, callback) {
 //     if (!origin || whitelist.indexOf(origin) !== -1) {

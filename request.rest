@@ -39,21 +39,21 @@ DELETE http://localhost:5000/users/6f803a0f-b4d6-4e1c-9e06-b9ee20e541b1
 
 ###
 //me
-GET  http://localhost:5000/me
+GET  https://backend-production-c8bb.up.railway.app/me
 
 ###
 //login
-POST  http://localhost:5000/login
+POST  https://backend-production-c8bb.up.railway.app/login
 Content-Type: application/json
 
 {
-    "email":"admin@gmail.com",
-    "password":"admin123"
+    "email":"user@gmail.com",
+    "password":"user123"
 }
 
 ###
 //logout
-DELETE http://localhost:5000/logout
+DELETE https://backend-production-c8bb.up.railway.app/logout
 
 ###
 //create transaction
@@ -81,7 +81,7 @@ POST backend-production-c8bb.up.railway.app/createjadwal
 Content-Type: application/json
 
 {   
-    "jam":"11:00"
+    "jam":"11:20"
 }
 ###
 //get all trans
