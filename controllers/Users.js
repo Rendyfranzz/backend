@@ -26,7 +26,7 @@ export const getUserById = async(req,res)=>{
     
 }
 export const createUsers = async(req,res)=>{
-    const {name,email,password,confPassword,role} = req.body;
+    const {name,email,password,confPassword,role,hp} = req.body;
     if(password !== confPassword) return res.status(400).json({msg:"password tidak cocok"})
     const hashPassword = await argon2.hash(password);
     try{
@@ -34,6 +34,7 @@ export const createUsers = async(req,res)=>{
             name:name,
             email:email,
             password:hashPassword,
+            hp:hp,
             role:role
         });
         res.status(201).json({msg:"register berhasil"})

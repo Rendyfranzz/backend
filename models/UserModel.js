@@ -32,6 +32,12 @@ export const Users = db.define('users',{
         validate:{
             notEmpty:true
         }
+    },hp:{
+        type:DataTypes.STRING,
+        allowNull:false,
+        validate:{
+            notEmpty:true
+        }
     },role:{
         type:DataTypes.STRING,
         allowNull:false,
@@ -75,6 +81,12 @@ export const Transaction = db.define('transaction',{
     },tanggal:{
         type:DataTypes.DATE,
         allowNull:false,
+        validate:{
+            notEmpty:true
+        }
+    },pesan:{
+        type:DataTypes.STRING,
+        allowNull:true,
         validate:{
             notEmpty:true
         }

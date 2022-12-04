@@ -60,9 +60,8 @@ export const getJadwalId = async(req,res)=>{
 export const createJadwal = async(req,res)=>{
     const {jam} = req.body
     try{
-        await Transaction.create({
+        await Jadwal.create({
             jam:jam,
-            time:req.userId,
         });  
         res.status(201).json({msg:"Jam Dipilih"})
     }catch(error){
