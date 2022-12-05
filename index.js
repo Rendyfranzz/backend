@@ -24,7 +24,7 @@ const store = new sessionStore({
 })
 app.use(cors({
     credentials:true,
-    origin: "https://localhost:3000",
+    origin: "https://7384-202-80-213-86.ap.ngrok.io",
 }));
 // app.options("*",cors())
 // const whitelist = ["http://localhost:3000"]
