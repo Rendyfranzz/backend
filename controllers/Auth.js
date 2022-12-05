@@ -23,7 +23,7 @@ export const Login = async(req, res)=>{
 }
 
 export const LogOut = (req, res)=>{
-    req.clearCookie('cookie')
+    // req.clearCookie('cookie')
     req.session.destroy((err)=>{
         if(err) return res.status(400).json({msg:"Tidak dapat Log Out"});
         res.status(200).json({msg:"Anda telah log out"})
@@ -33,17 +33,17 @@ export const LogOut = (req, res)=>{
 export const Me = async(req, res)=>{
     // res.header("Access-Control-Allow-Credentials",true)
     console.log(req.session);
-    const cookie = req.headers.cookie?.split("=").pop()
-    console.log(cookie);
-    if(!cookie){
-        return res.status(401).json({msg:"Mohon login ke akun anda"})
-    }
-    const user = await Users.findOne({
-        attributes:["uuid","name","email","role","hp"],
-        where:{
-            uuid: cookie
-        }
-    });
-    if(!user) return res.status(404).json({msg:"user tidak ditemukan"})
-    res.status(200).json(user)
+    // const cookie = req.headers.cookie?.split("=").pop()
+    // console.log(cookie);
+    // if(!cookie){
+    //     return res.status(401).json({msg:"Mohon login ke akun anda"})
+    // }
+    // const user = await Users.findOne({
+    //     attributes:["uuid","name","email","role","hp"],
+    //     where:{
+    //         uuid: cookie
+    //     }
+    // });
+    // if(!user) return res.status(404).json({msg:"user tidak ditemukan"})
+    // res.status(200).json(user)
 }
