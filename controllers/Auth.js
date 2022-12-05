@@ -30,7 +30,7 @@ export const LogOut = (req, res)=>{
 }
 
 export const Me = async(req, res)=>{
-    res.header("Access-Control-Allow-Credentials",true)
+    // res.header("Access-Control-Allow-Credentials",true)
     console.log(req.session);
     const cookie = req.headers.cookie?.split("=").pop()
     console.log(cookie);
