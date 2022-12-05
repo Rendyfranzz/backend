@@ -29,7 +29,7 @@ export const LogOut = (req, res)=>{
 
 export const Me = async(req, res)=>{
     res.header("Access-Control-Allow-Credentials",true)
-    console.log(req.header.cookie);
+    console.log(req.headers.cookie);
     // if(!req.session.userId){
     //     return res.status(401).json({msg:"Mohon login ke akun anda"})
     // }
