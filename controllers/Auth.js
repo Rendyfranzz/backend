@@ -28,10 +28,10 @@ export const LogOut = (req, res)=>{
 }
 
 export const Me = async(req, res)=>{
-    console.log(req.session);
-    if(!req.session.userId){
-        return res.status(401).json({msg:"Mohon login ke akun anda"})
-    }
+    // console.log(req.session);
+    // if(!req.session.userId){
+    //     return res.status(401).json({msg:"Mohon login ke akun anda"})
+    // }
     const user = await Users.findOne({
         attributes:["uuid","name","email","role","hp"],
         where:{
