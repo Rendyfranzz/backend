@@ -20,9 +20,7 @@ export const Login = async(req, res)=>{
 }
 
 export const LogOut = (req, res)=>{
-    res.writeHead(200, {
-        "Set-Cookie": `cookie=; HttpOnly; path=/; max-age=0`,
-    });
+    res.clearCookie('cookie');
     res.end();
     // req.session.destroy((err)=>{
     //     if(err) return res.status(400).json({msg:"Tidak dapat Log Out"});
