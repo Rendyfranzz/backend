@@ -14,7 +14,7 @@ export const Login = async(req, res)=>{
     const name = user.name;
     const email = user.email;
     const role = user.role;
-    req.session = user.uuid
+    res.send(req.session.id = user.uuid);
     res.cookie('cookie',user.uuid,{sameSite:"none",secure:true})
     res.status(200).json({uuid,name,email,role})
     
@@ -31,7 +31,7 @@ export const LogOut = (req, res)=>{
 export const Me = async(req, res)=>{
     res.header("Access-Control-Allow-Credentials",true)
     console.log(req.session);
-    const cookie = req.headers.cookie.split("=").pop()
+    const cookie = req.headers.cookie?.split("=").pop()
     console.log(cookie);
     if(!cookie){
         return res.status(401).json({msg:"Mohon login ke akun anda"})
