@@ -21,6 +21,7 @@ export const Login = async(req, res)=>{
 }
 
 export const LogOut = (req, res)=>{
+    res.clearCookie('cookie')
     req.session.destroy((err)=>{
         if(err) return res.status(400).json({msg:"Tidak dapat Log Out"});
         res.status(200).json({msg:"Anda telah log out"})
