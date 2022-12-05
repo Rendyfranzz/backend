@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors"
-import session, { cookie } from "express-session";
+import session from "express-session";
 import dotenv from "dotenv"
 import db from "./config/Database.js"
 import SequelizeStore from "connect-session-sequelize"
