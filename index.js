@@ -1,5 +1,4 @@
 import express from "express";
-import bodyParser from "body-parser";
 import cors from "cors"
 import session from "express-session";
 import dotenv from "dotenv"
@@ -48,6 +47,7 @@ app.use(session({
     store: store,
     cookie:{
         secure:"auto",
+        SameSite:"None"
     }
 }))
 
