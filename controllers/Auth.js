@@ -21,7 +21,7 @@ export const Login = async(req, res)=>{
 }
 
 export const LogOut = (req, res)=>{
-    res.cookie("cookie", "", { expires: new Date(0) });
+    res.cookie("cookie", "", {sameSite:"none",secure:true, expires: new Date(0) });
     res.end();
     // req.session.destroy((err)=>{
     //     if(err) return res.status(400).json({msg:"Tidak dapat Log Out"});
