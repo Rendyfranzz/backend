@@ -39,6 +39,7 @@ app.use(cors({
 //   credentials: true,
 // }
 // app.use(cors(corsOptions))
+app.use(express.json())
 app.set("trust proxy",1);
 app.use(session({
     secret: process.env.SESS_SECRET,
@@ -51,7 +52,7 @@ app.use(session({
     }
 }))
 
-app.use(express.json())
+
 app.use(TransRoute)
 app.use(AuthRoute)
 app.use(UserRoute)
