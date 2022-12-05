@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors"
-import session from "express-session";
+import session, { cookie } from "express-session";
 import dotenv from "dotenv"
 import db from "./config/Database.js"
 import SequelizeStore from "connect-session-sequelize"
@@ -23,6 +23,7 @@ const store = new sessionStore({
 })
 app.use(cors({
     credentials:true,
+    methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD","DELETE"],
     origin: "https://7384-202-80-213-86.ap.ngrok.io",
 }));
 // app.options("*",cors())
@@ -40,7 +41,7 @@ app.use(cors({
 // app.use(cors(corsOptions))
 
 app.use(session({
-    name:"session",
+    name:"SESS_NAME",
     secret: process.env.SESS_SECRET,
     resave: false,
     saveUninitialized:true,
