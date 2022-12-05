@@ -23,7 +23,6 @@ const store = new sessionStore({
     db: db
 })
 app.use(cors({
-    credentials:true,
     origin: "https://7384-202-80-213-86.ap.ngrok.io",
 }));
 // app.options("*",cors())
