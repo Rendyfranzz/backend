@@ -41,7 +41,7 @@ app.use(cors({
 // app.use(cors(corsOptions))
 app.set("trust proxy",1);
 app.use(session({
-    name:"SESS_NAME",
+    name:"SESS2_NAME",
     secret: process.env.SESS_SECRET,
     resave: false,
     saveUninitialized:true,
