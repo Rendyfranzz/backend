@@ -49,7 +49,8 @@ app.use(session({
     proxy:true,
     cookie:{
         secure:true,
-        SameSite:"none"
+        SameSite:"none",
+        httpOnly:false
     }
 }))
 
@@ -65,4 +66,5 @@ app.use(TimeRoute)
 // store.sync()
 app.listen(process.env.PORT,()=>{
     console.log("server running");
+    console.log(process.env.SESS_SECRET);
 })
