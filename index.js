@@ -24,7 +24,7 @@ const store = new sessionStore({
 app.use(cors({
     credentials:true,
     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD","DELETE"],
-    origin: "https://7384-202-80-213-86.ap.ngrok.io",
+    origin: "https://f406-202-80-213-86.ap.ngrok.io",
 }));
 // app.options("*",cors())
 // const whitelist = ["http://localhost:3000"]
@@ -46,11 +46,14 @@ app.use(session({
     resave: false,
     saveUninitialized:true,
     store: store,
+    proxy:true,
     cookie:{
         secure:true,
         SameSite:"none"
     }
 }))
+
+
 
 
 app.use(TransRoute)

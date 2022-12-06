@@ -1,18 +1,31 @@
 import {Users} from "../models/UserModel.js";
 
 export const verifyUser = async(req,res,next)=>{
-    if(!req.session.userId){
+    const cookie = req.headers.cookie?.split("=").pop()
+    if(!cookie){
         return res.status(401).json({msg:"Mohon login ke akun anda"})
     }
     const user = await Users.findOne({
         where:{
-            uuid: req.session.userId
+            uuid: cookie
         }
     });
     if(!user) return res.status(404).json({msg:"user tidak ditemukan"})
     req.userId = user.uuid
     req.role = user.role
     next()
+    // if(!req.session.userId){
+    //     return res.status(401).json({msg:"Mohon login ke akun anda"})
+    // }
+    // const user = await Users.findOne({
+    //     where:{
+    //         uuid: req.session.userId
+    //     }
+    // });
+    // if(!user) return res.status(404).json({msg:"user tidak ditemukan"})
+    // req.userId = user.uuid
+    // req.role = user.role
+    // next()
 }
 
 export const adminOnly = async(req,res,next)=>{

@@ -42,7 +42,7 @@ export const getTransactionByQrid = async(req,res)=>{
     
 }
 export const createTransaction = async(req,res)=>{
-    const {name,price,lunas,tanggal,timeid,qrId,pesan} = req.body
+    const {name,price,lunas,tanggal,timeid,qrId,pesan,userid} = req.body
     try{
         await Transaction.create({
             name:name,
@@ -52,7 +52,7 @@ export const createTransaction = async(req,res)=>{
             tanggal:tanggal,
             timeid:timeid,
             qrId:qrId,
-            userid:req.userId,
+            userid:userid,
         });  
         res.status(201).json({msg:"Transaksi berhasil"})
     }catch(error){
