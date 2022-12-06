@@ -16,7 +16,7 @@ export const Login = async(req, res)=>{
     const role = user.role;
     req.session.user = user.uuid
     console.log("login"+req.session);
-    res.cookie('cookie',user.uuid,{sameSite:"none",secure:true})
+    // res.cookie('cookie',user.uuid,{sameSite:"none",secure:true})
     res.status(200).json({uuid,name,email,role})
 }
 
