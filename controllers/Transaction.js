@@ -42,6 +42,7 @@ export const getTransactionByQrid = async(req,res)=>{
     
 }
 export const createTransaction = async(req,res)=>{
+    console.log(req.userId);
     const {name,price,lunas,tanggal,timeid,qrId,pesan,userid} = req.body
     try{
         await Transaction.create({
