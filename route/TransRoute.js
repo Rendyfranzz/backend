@@ -5,7 +5,6 @@ import {
      deleteTransaction,
      getTransactionByUuid,
      getStatusTransaction,
-     getIncome2,
      updateStatus,
      getTransactionByid
 } from "../controllers/Transaction.js";
@@ -18,7 +17,6 @@ router.get('/transaction', verifyUser, adminOnly, getTransaction)
 router.get('/transaction/?:id', verifyUser, getTransactionByid)
 router.get('/usertrans/?:id', verifyUser, getTransactionByUuid)
 router.get('/getstatus/', verifyUser, getStatusTransaction)
-router.get('/getincome/', getIncome2)
 router.post('/transaction', verifyUser, createTransaction)
 router.patch('/transaction/:id', verifyUser, adminOnly, updateStatus)
 router.delete('/deltrans/:id', verifyUser, adminOnly, deleteTransaction)
