@@ -44,44 +44,6 @@ export const getTransaction = async (req, res) => {
     }
 }
 
-export const getIncome = async (req, res) => {
-    try {
-        const page = parseInt(req.query.page) || 0;
-        const limit = parseInt(req.query.limit) || 10;
-        const search = req.query.month_query || "";
-        const offset = limit * page;
-        const totalRows = await Transaction.count({
-            where: {
-                name: {
-                    [Op.like]: '%' + search + '%'
-                }
-            }
-        });
-        const totalPage = Math.ceil(totalRows / limit);
-        const result = await Transaction.findAll({
-            where: {
-                tanggal: {
-                    [Op.like]: '%' + month + '%'
-                }
-            },
-            offset: offset,
-            limit: limit,
-            order: [
-                ['name', 'ASC']
-            ]
-        });
-        res.status(200).json({
-            result: result,
-            page: page,
-            limit: limit,
-            totalRows: totalRows,
-            totalPage: totalPage
-        })
-    } catch (error) {
-        res.status(500).json({ msg: error.message })
-    }
-}
-
 export const getTransactionByUuid = async (req, res) => {
     try {
         const response = await Transaction.findAll({

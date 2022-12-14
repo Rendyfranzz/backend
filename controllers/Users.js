@@ -2,16 +2,7 @@ import { Users } from "../models/UserModel.js";
 import argon2 from "argon2"
 import { Op } from "sequelize";
 
-export const getUsers = async (req, res) => {
-    try {
-        const response = await Users.findAll({
-            attributes: ['uuid', 'name', 'email', 'role']
-        });
-        res.status(200).json(response)
-    } catch (error) {
-        res.status(500).json({ msg: error.message })
-    }
-}
+
 export const getUserById = async (req, res) => {
     try {
         const response = await Users.findOne({
@@ -27,7 +18,7 @@ export const getUserById = async (req, res) => {
 
 }
 
-export const getUsers2 = async (req, res) => {
+export const getUsers = async (req, res) => {
     const page = parseInt(req.query.page) || 0;
     const limit = parseInt(req.query.limit) || 10;
     const search = req.query.search_query || "";
