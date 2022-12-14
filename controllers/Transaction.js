@@ -173,36 +173,3 @@ export const deleteTransaction = async (req, res) => {
         res.status(400).json({ msg: error.message })
     }
 }
-
-export const getIncomeMonth = async (req, res) => {
-    const sleep = ms => new Promise(res => setTimeout(res, ms));
-    let sumData = []
-    const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
-    const data = await Promise.all(month.map(async (month) => {
-        await sleep(1000);
-        let response = await Transaction.sum('price', {
-            where: {
-                tanggal: {
-                    [Op.like]: '%' + month + '%'
-                }, lunas: "lunas"
-            }
-        })
-        console.log(response);
-        return response
-    }))
-    console.log(data);
-    res.status(200).json(data)
-}
-
-export const getIncome2 = async (req, res) => {
-    const month = req.query.month
-    const response = await Transaction.sum('price', {
-        where: {
-            tanggal: {
-                [Op.like]: '%' + month + '%'
-            }, lunas: "lunas"
-        }
-    })
-
-    res.status(200).json(response)
-}
