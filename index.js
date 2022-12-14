@@ -22,9 +22,9 @@ const store = new sessionStore({
     db: db
 })
 app.use(cors({
-    credentials:true,
-    methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD","DELETE"],
-    origin: "https://f406-202-80-213-86.ap.ngrok.io",
+    credentials: true,
+    methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "DELETE", "PATCH"],
+    origin: "http://localhost:3000",
 }));
 // app.options("*",cors())
 // const whitelist = ["http://localhost:3000"]
@@ -40,18 +40,18 @@ app.use(cors({
 // }
 // app.use(cors(corsOptions))
 app.use(express.json())
-app.set("trust proxy",1);
+// app.set("trust proxy",1);
 app.use(session({
     secret: process.env.SESS_SECRET,
     resave: false,
-    saveUninitialized:true,
+    saveUninitialized: false,
     store: store,
-    proxy:true,
-    httpOnly:false,
-    cookie:{
-        secure:true,
-        SameSite:"none",
-        httpOnly:false
+    // proxy:true,
+    // httpOnly:false,
+    cookie: {
+        secure: false,
+        // SameSite:"lax",
+        // httpOnly:true
     }
 }))
 
@@ -65,6 +65,6 @@ app.use(PaymentRoute)
 app.use(TimeRoute)
 
 // store.sync()
-app.listen(process.env.PORT,()=>{
+app.listen(process.env.PORT, () => {
     console.log("server running");
 })

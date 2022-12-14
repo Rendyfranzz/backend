@@ -1,68 +1,208 @@
 import { Jadwal, Transaction, Users } from "../models/UserModel.js";
+import { Op } from "sequelize";
 
-export const getTransaction = async(req,res)=>{
-    try{
-        const response =  await Transaction.findAll({
-                include:[{
-                    model:Users 
-                }]
-            });
-        res.status(200).json(response)
-    }catch(error){
-        res.status(500).json({msg:error.message})
-    }
-}
-
-export const getTransactionByUuid = async(req,res)=>{
-    try{
-        const response =  await Transaction.findAll({
-                include:[{
-                    model:Jadwal
-                }],
-                where:{
-                    userid:req.params.id
+export const getTransaction = async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 0;
+        const limit = parseInt(req.query.limit) || 10;
+        const search = req.query.search_query || "";
+        const offset = limit * page;
+        const totalRows = await Transaction.count({
+            where: {
+                name: {
+                    [Op.like]: '%' + search + '%'
                 }
-            });
-        res.status(200).json(response)
-    }catch(error){
-        res.status(500).json({msg:error.message})
+            }
+        });
+        const totalPage = Math.ceil(totalRows / limit);
+        const result = await Transaction.findAll({
+            include: [{
+                model: Users
+            }, {
+                model: Jadwal
+            }],
+            where: {
+                name: {
+                    [Op.like]: '%' + search + '%'
+                }
+            },
+            offset: offset,
+            limit: limit,
+            order: [
+                ['name', 'ASC']
+            ]
+        });
+        res.status(200).json({
+            result: result,
+            page: page,
+            limit: limit,
+            totalRows: totalRows,
+            totalPage: totalPage
+        })
+    } catch (error) {
+        res.status(500).json({ msg: error.message })
     }
 }
-export const getTransactionByQrid = async(req,res)=>{
-    try{
+
+export const getIncome = async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 0;
+        const limit = parseInt(req.query.limit) || 10;
+        const search = req.query.month_query || "";
+        const offset = limit * page;
+        const totalRows = await Transaction.count({
+            where: {
+                name: {
+                    [Op.like]: '%' + search + '%'
+                }
+            }
+        });
+        const totalPage = Math.ceil(totalRows / limit);
+        const result = await Transaction.findAll({
+            where: {
+                tanggal: {
+                    [Op.like]: '%' + month + '%'
+                }
+            },
+            offset: offset,
+            limit: limit,
+            order: [
+                ['name', 'ASC']
+            ]
+        });
+        res.status(200).json({
+            result: result,
+            page: page,
+            limit: limit,
+            totalRows: totalRows,
+            totalPage: totalPage
+        })
+    } catch (error) {
+        res.status(500).json({ msg: error.message })
+    }
+}
+
+export const getTransactionByUuid = async (req, res) => {
+    try {
+        const response = await Transaction.findAll({
+            include: [{
+                model: Jadwal
+            }],
+            where: {
+                userid: req.params.id
+            }
+        });
+        res.status(200).json(response)
+    } catch (error) {
+        res.status(500).json({ msg: error.message })
+    }
+}
+export const getTransactionByid = async (req, res) => {
+    try {
         const response = await Transaction.findOne({
-            where :{
-                qrId : req.params.id,
+            where: {
+                transuuid: req.params.id,
             }
         })
         res.status(200).json(response)
-    }catch(err){
+    } catch (err) {
         console.log(err);
     }
-    
+
 }
-export const createTransaction = async(req,res)=>{
-    console.log(req.userId);
-    const {name,price,lunas,tanggal,timeid,qrId,pesan,userid} = req.body
-    try{
+export const createTransaction = async (req, res) => {
+    const { name, price, lunas, tanggal, timeid, qrId, pesan } = req.body
+    try {
         await Transaction.create({
-            name:name,
-            price:price,
-            lunas:lunas,
-            pesan:pesan,
-            tanggal:tanggal,
-            timeid:timeid,
-            qrId:qrId,
-            userid:userid,
-        });  
-        res.status(201).json({msg:"Transaksi berhasil"})
-    }catch(error){
-        res.status(400).json({msg:error.message})
+            name: name,
+            price: price,
+            lunas: lunas,
+            pesan: pesan,
+            tanggal: tanggal,
+            timeid: timeid,
+            qrId: qrId,
+            userid: req.userId
+        });
+        res.status(201).json({ msg: "Transaksi berhasil" })
+    } catch (error) {
+        res.status(400).json({ msg: error.message })
     }
 }
-export const updateTransaction = async(req,res)=>{
-    
+
+export const getStatusTransaction = async (req, res) => {
+    const date = req.query.date
+    const time = req.query.time
+    console.log({ date, time });
+    try {
+        const response = await Transaction.findOne({
+            where: {
+                tanggal: date,
+                timeid: time,
+                lunas: "lunas"
+            }
+        })
+        res.status(200).json(response)
+    } catch (err) {
+        console.log(err);
+    }
 }
-export const deleteTransaction = async(req,res)=>{
-   
+export const updateStatus = async (req, res) => {
+    try {
+        await Transaction.update({
+            lunas: req.body.lunas
+        }, {
+            where: {
+                transuuid: req.params.id
+            }
+        })
+        res.status(200).json({ msg: "Update berhasil" })
+    } catch (err) {
+        res.status(400).json(err)
+    }
+}
+export const deleteTransaction = async (req, res) => {
+    let id = req.params.id
+    try {
+        await Transaction.destroy({
+            where: {
+                transuuid: req.params.id
+            }
+        });
+        res.status(200).json({ msg: "hapus berhasil" })
+    } catch (error) {
+        res.status(400).json({ msg: error.message })
+    }
+}
+
+export const getIncomeMonth = async (req, res) => {
+    const sleep = ms => new Promise(res => setTimeout(res, ms));
+    let sumData = []
+    const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+    const data = await Promise.all(month.map(async (month) => {
+        await sleep(1000);
+        let response = await Transaction.sum('price', {
+            where: {
+                tanggal: {
+                    [Op.like]: '%' + month + '%'
+                }, lunas: "lunas"
+            }
+        })
+        console.log(response);
+        return response
+    }))
+    console.log(data);
+    res.status(200).json(data)
+}
+
+export const getIncome2 = async (req, res) => {
+    const month = req.query.month
+    const response = await Transaction.sum('price', {
+        where: {
+            tanggal: {
+                [Op.like]: '%' + month + '%'
+            }, lunas: "lunas"
+        }
+    })
+
+    res.status(200).json(response)
 }

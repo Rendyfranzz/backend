@@ -1,13 +1,13 @@
 import {Users} from "../models/UserModel.js";
 
 export const verifyUser = async(req,res,next)=>{
-    const cookie = req.headers.cookie?.split("=").pop()
-    if(!cookie){
+    // const cookie = req.headers.cookie?.split("=").pop()
+    if(!req.session.userId){
         return res.status(401).json({msg:"Mohon login ke akun anda"})
     }
     const user = await Users.findOne({
         where:{
-            uuid: cookie
+            uuid: req.session.userId
         }
     });
     if(!user) return res.status(404).json({msg:"user tidak ditemukan"})

@@ -3,12 +3,12 @@ POST http://localhost:5000/users
 Content-Type: application/json
 
 {
-    "name":"user",
-    "email":"user@gmail.com",
+    "name":"user23",
+    "email":"user26@gmail.com",
     "password":"user123",
     "hp" : "085768987565",
     "confPassword":"user123",
-    "role":"admin"
+    "role":"user"
 }
 
 ###
@@ -43,12 +43,12 @@ GET  https://backend-production-c8bb.up.railway.app/me
 
 ###
 //login
-POST  https://backend-production-c8bb.up.railway.app/login
+POST  http://localhost:5000/login
 Content-Type: application/json
 
 {
-    "email":"user@gmail.com",
-    "password":"user123"
+    "email":"admin@gmail.com",
+    "password":"admin123"
 }
 
 ###
@@ -130,4 +130,10 @@ get http://localhost:5000/getjadwalid/58bf60f0-6972-11ed-80ec-00155d6ca220
 ###
 //get all trans
 GET http://localhost:5000/transaction/silhouette-1669911165388
+###
+//get all trans
+GET http://localhost:5000/getstatus/silhouette-1670298369470
 
+###
+//get jadwal
+GET http://localhost:5000/getincome?month=Dec

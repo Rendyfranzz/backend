@@ -1,6 +1,6 @@
 import Xendit from "xendit-node";
 import dotenv from "dotenv"
-import { Transaction} from "../models/UserModel.js";
+import { Transaction } from "../models/UserModel.js";
 dotenv.config()
 
 export const getQr = async (req, res) => {
@@ -13,8 +13,8 @@ export const getQr = async (req, res) => {
             externalID: req.params.qrid,
             amount: req.params.amount,
             type: "DYNAMIC",
-            callbackURL: 'https://backend-production-c8bb.up.railway.app/qrcall',
-            metadata:null
+            callbackURL: process.env.CALLBACK_URL,
+            metadata: null
         })
         res.status(200).json(response)
     } catch (error) {
@@ -43,22 +43,23 @@ export const qrCallback = async (req, res) => {
     // tiap callback langsung insert lunas
     // const reqToken = req.headers['x-callback-token']
     // if (reqToken == process.env.CALLBACK_TOKEN) {
-            console.log(req.body);
-            const response = await Transaction.findOne({
-                where :{
-                    qrId : req.body.qr_code.external_id
-                }
-            })
-            if(response){
-                await Transaction.update({
-                    lunas:"lunas"
-                },{
-                    where:{
-                        qrId : req.body.qr_code.external_id
-                    }
-                })}     
-            return res.sendStatus(200)
-       
+    console.log(req.body);
+    const response = await Transaction.findOne({
+        where: {
+            qrId: req.body.qr_code.external_id
+        }
+    })
+    if (response) {
+        await Transaction.update({
+            lunas: "lunas"
+        }, {
+            where: {
+                qrId: req.body.qr_code.external_id
+            }
+        })
+    }
+    return res.sendStatus(200)
+
     // }
 
 }
